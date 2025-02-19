@@ -15,7 +15,11 @@
         <a href="{% url 'create_item' todo_list.id %}" class="btn btn-primary"
           >Adicionar Novo Item</a
         >
-        <a href="{% url 'index' %}" class="btn btn-secondary">Voltar</a>
+        <a
+          href="{% url 'user_todo_lists' %}?email={{ todo_list.user.email }}"
+          class="btn btn-secondary"
+          >Voltar</a
+        >
       </div>
       <ul class="list-group">
         {% for item in items %}

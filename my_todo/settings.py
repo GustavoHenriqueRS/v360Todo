@@ -5,7 +5,7 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['v360todo-060e5e9bd337.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['v360todo-060e5e9bd337.herokuapp.com', 'localhost', '127.0.0.1']
 
 SECRET_KEY = 'django-insecure-f6ap!x%6w^3js7ibm#%e(5nd2e6k!s9*kwgwp_8f6*ryrwswe9'
 

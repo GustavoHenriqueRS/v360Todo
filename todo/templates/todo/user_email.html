@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Entre com seu Email</title>
+  </head>
+  <body>
+    <h1>Entre com seu Email</h1>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">Ver minhas listas</button>
+    </form>
+  </body>
+</html>
