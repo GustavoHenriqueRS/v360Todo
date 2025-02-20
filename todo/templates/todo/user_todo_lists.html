@@ -27,6 +27,7 @@
         class="bg-white shadow-md rounded p-4 mb-4 flex justify-between items-center"
       >
         <span class="text-2xl font-semibold">{{ lista.nome }}</span>
+        <span class="text-2xl font-semibold">{{ lista.dia }}</span>
         <div>
           <a
             href="{% url 'list_detail' lista.id %}"

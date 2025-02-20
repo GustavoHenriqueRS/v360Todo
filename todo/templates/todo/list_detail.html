@@ -29,6 +29,11 @@
       >
         {{ item.descricao }}
       </span>
+      <span
+        class="text-xl {% if item.concluido %}line-through text-gray-400{% endif %}"
+      >
+        {{ item.hora }}
+      </span>
       <div class="flex space-x-2">
         <a
           href="{% url 'edit_item' item.id %}"
