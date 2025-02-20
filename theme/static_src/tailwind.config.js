@@ -8,9 +8,8 @@
 module.exports = {
   content: [
     "../../todo/templates/**/*.html",
-    "../../todo/forms.py",
     "../../templates/**/*.html",
-    "../../**/templates/**/*.html",
+    "../../todo/forms.py",
   ],
   theme: {
     extend: {},
