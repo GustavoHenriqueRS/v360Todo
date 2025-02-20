@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Excluir Item</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="container mt-4">
-      <h1>Excluir Item</h1>
-      <p>
-        Tem certeza que deseja excluir o item:
-        <strong>{{ todo_item.descricao }}</strong>?
-      </p>
-      <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Sim, Excluir</button>
-        <a
-          href="{% url 'list_detail' todo_item.lista.id %}"
-          class="btn btn-secondary"
-          >Cancelar</a
-        >
-      </form>
+{% extends "base.html" %} {% block title %} Entre com seu Email {% endblock %}
+{% block content %}
+<div
+  class="w-full flex flex-col items-center justify-center min-h-screen bg-gray-50 p-10"
+>
+  <h1 class="text-4xl font-bold mb-6">Excluir Item</h1>
+  <p class="text-xl mb-8">
+    Tem certeza que deseja excluir o item:
+    <strong class="text-red-500">{{ todo_item.descricao }} 💔</strong>?
+  </p>
+  <form method="post" class="w-full max-w-sm flex flex-col items-center">
+    {% csrf_token %}
+    <div class="flex space-x-4">
+      <button
+        type="submit"
+        class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded"
+      >
+        Sim, Excluir
+      </button>
+      <a
+        href="{% url 'list_detail' todo_item.lista.id %}"
+        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded"
+      >
+        Cancelar
+      </a>
     </div>
-  </body>
-</html>
+  </form>
+</div>
+{% endblock %}
