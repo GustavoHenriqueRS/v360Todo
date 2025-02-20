@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import TodoList, TodoItem, User
 from .forms import TodoListForm, TodoItemForm, UserForm
+import json
 
 def user_email_view(request):
     if request.method == 'POST':
@@ -23,13 +24,27 @@ def user_todo_lists(request):
         })
     
     user, created = User.objects.get_or_create(email=email)
-    
     lists = user.todo_lists.all()
     
-    return render(request, 'todo/user_todo_lists.html', {
+    # Cria os eventos para o FullCalendar
+    events = [
+        {
+            "title": lista.nome,
+            "start": lista.dia.isoformat(),  # Supondo que lista.dia seja um DateField
+            "url": request.build_absolute_uri(f"/lista/{lista.id}/"),
+        }
+        for lista in lists
+    ]
+    
+    events_json = json.dumps(events)
+    
+    context = {
         'user': user,
         'lists': lists,
-    })
+        'events_json': events_json,
+    }
+    
+    return render(request, 'todo/user_todo_lists.html', context)
 
 def create_list(request):
     email = request.GET.get('email')

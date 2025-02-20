@@ -28,7 +28,7 @@ class TodoListForm(forms.ModelForm):
                 'placeholder': 'Digite o nome da lista',
             }),
             'dia': forms.DateInput(
-                format='%Y-%m-%d',  
+                format='%d/%m/%Y',  
                 attrs={
                     'class': 'appearance-none border rounded w-full py-4 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-xl tracking-widest',
                     'placeholder': 'Digite a data da lista',

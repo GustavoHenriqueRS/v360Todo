@@ -1,55 +1,55 @@
 {% extends "base.html" %} {% block title %} Entre com seu Email {% endblock %}
-{% block content %}
+{% block content %} {% block extra_head %} {% endblock %}
+
 <div
-  class="w-full flex flex-col items-center justify-center min-h-screen bg-gray-100"
+  class="w-full flex flex-col items-center justify-center min-h-screen bg-gray-50 p-10"
 >
-  <div
-    class="flex items-center justify-center flex-col bg-gray-100 rounded-lg shadow-xl p-10"
-  >
-    <a
-      href="{% url 'user_email' %}"
-      class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded text-xl self-end"
-    >
-      Voltar
-    </a>
-    <h1 class="text-5xl font-bebas my-8">Listas de {{ user.email }} 😎</h1>
-    <div class="w-full max-w-xl mb-8 flex justify-between">
-      <a
-        href="{% url 'create_list' %}?email={{ user.email }}"
-        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded text-xl"
-      >
-        Criar Nova Lista
-      </a>
+  <div class="w-full max-w-4xl">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-5xl font-bebas">Listas de {{ user.email }} 😎</h1>
+      <div class="flex space-x-4">
+        <a
+          href="{% url 'create_list' %}?email={{ user.email }}"
+          class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded text-xl"
+        >
+          Criar Nova Lista
+        </a>
+        <a
+          href="{% url 'user_email' %}"
+          class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded text-xl"
+        >
+          Voltar
+        </a>
+      </div>
     </div>
-    <ul class="w-full max-w-xl">
-      {% for lista in lists %}
-      <li
-        class="bg-white shadow-md rounded p-4 mb-4 flex justify-between items-center"
-      >
-        <span class="text-2xl font-semibold">{{ lista.nome }}</span>
-        <span class="text-2xl font-semibold">{{ lista.dia }}</span>
-        <div>
-          <a
-            href="{% url 'list_detail' lista.id %}"
-            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-2"
-          >
-            Ver Detalhes
-          </a>
-          <a
-            href="{% url 'delete_list' lista.id %}"
-            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-          >
-            Excluir
-          </a>
-        </div>
-      </li>
-      {% empty %}
-      <p class="text-gray-500 text-xl text-center">
-        Nenhuma lista encontrada 🙁. Crie uma nova!
-      </p>
-      {% endfor %}
-    </ul>
+
+    <div id="calendar"></div>
   </div>
 </div>
+{% endblock %} {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      locale: 'pt-br',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      height: 800,
+      events: {{ events_json|safe }},
+      eventClick: function(info) {
+        info.jsEvent.preventDefault();
+        if (info.event.url) {
+          window.location.href = info.event.url;
+        }
+      }
+    });
+    calendar.render();
+  });
+</script>
 {% endblock %}
