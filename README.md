@@ -101,7 +101,3 @@ Contribuições, sugestões e feedback são bem-vindos! Sinta-se à vontade para
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
-
----
-
-Espero que esse README ajude a apresentar sua aplicação de forma clara e humilde. Se precisar de mais alguma alteração, estou à disposição!
