@@ -9,8 +9,6 @@ ALLOWED_HOSTS = ['v360todo-060e5e9bd337.herokuapp.com', 'localhost', '127.0.0.1'
 
 SECRET_KEY = 'django-insecure-f6ap!x%6w^3js7ibm#%e(5nd2e6k!s9*kwgwp_8f6*ryrwswe9'
 
-DEBUG = True
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,6 +33,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
 if DEBUG:
     INSTALLED_APPS += ['django_browser_reload']
