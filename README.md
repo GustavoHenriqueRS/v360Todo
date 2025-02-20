@@ -50,7 +50,7 @@ A aplicação permite que o usuário se identifique pelo e-mail e crie, visualiz
 
 4. **Configure o Tailwind CSS:**
 
-   - Navegue até o diretório onde está o Tailwind (por exemplo, se os arquivos estiverem em `theme/static_src`):
+   - Navegue até o diretório onde está o Tailwind (`theme/static_src`):
 
      ```bash
      cd theme/static_src
