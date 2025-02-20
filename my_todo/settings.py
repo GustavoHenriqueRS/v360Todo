@@ -21,8 +21,6 @@ INSTALLED_APPS = [
     'todo',
     'tailwind',
     'theme',
-    'django_browser_reload',
-
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -36,9 +34,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
-
 ]
+
+if DEBUG:
+    INSTALLED_APPS += ['django_browser_reload']
+    MIDDLEWARE += ['django_browser_reload.middleware.BrowserReloadMiddleware']
 
 INTERNAL_IPS = [
     "127.0.0.1",
